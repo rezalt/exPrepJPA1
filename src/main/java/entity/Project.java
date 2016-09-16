@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import javax.persistence.Temporal;
+
 
 /**
  *
@@ -39,8 +41,10 @@ public class Project implements Serializable
     private Long id;
     private String name;
     private String description;
-    private DateTime created;
-    private DateTime lastModified;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date created;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date lastModified;
     
     public Long getId()
     {
@@ -77,12 +81,12 @@ public class Project implements Serializable
         return description;
     }
 
-    public DateTime getCreated()
+    public Date getCreated()
     {
         return created;
     }
 
-    public DateTime getLastModified()
+    public Date getLastModified()
     {
         return lastModified;
     }
@@ -107,12 +111,12 @@ public class Project implements Serializable
         this.description = description;
     }
 
-    public void setCreated(DateTime created)
+    public void setCreated(Date created)
     {
         this.created = created;
     }
 
-    public void setLastModified(DateTime lastModified)
+    public void setLastModified(Date lastModified)
     {
         this.lastModified = lastModified;
     }

@@ -7,13 +7,14 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -22,7 +23,6 @@ import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 @Entity
 public class ProjectUser implements Serializable
 {
-
 
     @ManyToMany
     List<Project> projects = new ArrayList<>();
@@ -33,22 +33,21 @@ public class ProjectUser implements Serializable
     private Long id;
     private String userName;
     private String email;
-    private DateTime created;
-
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date created;
 
     public ProjectUser()
     {
 
     }
-    
-    public ProjectUser(Long id, String userName, String email, DateTime created)
+
+    public ProjectUser( String userName, String email, Date created)
     {
-        this.id = id;
         this.userName = userName;
         this.email = email;
         this.created = created;
     }
-    
+
     public void setProjects(List<Project> projects)
     {
         this.projects = projects;
@@ -64,7 +63,7 @@ public class ProjectUser implements Serializable
         this.email = email;
     }
 
-    public void setCreated(DateTime created)
+    public void setCreated(Date created)
     {
         this.created = created;
     }
@@ -84,11 +83,11 @@ public class ProjectUser implements Serializable
         return email;
     }
 
-    public DateTime getCreated()
+    public Date getCreated()
     {
         return created;
     }
-    
+
     public Long getId()
     {
         return id;
